@@ -10,7 +10,7 @@ import OrdersContextProvider from './contexts/orders-context';
 import Search from './components/Search';
 import { IOrder } from './types/context types/IOrdersContext';
 import Pagination from './components/Pagination';
-
+//To deploy a gh pages use: npm run predeploy-and-deploy
 
 const urlWithProducts = "https://raw.githubusercontent.com/rrrkkkvvv/products.github.io/main/productsForHstuff.json"
 
