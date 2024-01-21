@@ -5,7 +5,6 @@ export interface ICountry {
     flags: {
         png: string;
     };
-
 }
 
 export interface ICountriesProps {

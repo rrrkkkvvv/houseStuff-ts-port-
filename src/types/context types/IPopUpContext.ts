@@ -1,6 +1,6 @@
 export interface ShowPopUpFnType {
     type: string,
-    text: string
+    text: string,
 }
 
 export interface IPopUpContextValue {

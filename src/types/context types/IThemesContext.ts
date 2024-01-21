@@ -1,11 +1,7 @@
-
-
 export interface IColorTheme {
     background: string,
     color: string,
 }
-
-
 
 export interface IColorThemes {
     light: IColorTheme,

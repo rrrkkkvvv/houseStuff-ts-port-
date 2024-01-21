@@ -1,5 +1,3 @@
-
-
 export interface IOrder {
     id: number;
     price: string;
@@ -9,7 +7,6 @@ export interface IOrder {
     fullDesc: string;
     category: string;
 }
-
 
 export interface IOrdersContextValue {
     orders: IOrder[],

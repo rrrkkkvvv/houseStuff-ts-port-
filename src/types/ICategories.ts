@@ -1,3 +1,3 @@
 export interface ICategoriesProps {
-    chooseCategory: (category: string) => void
+    chooseCategory: (category: string) => void,
 }

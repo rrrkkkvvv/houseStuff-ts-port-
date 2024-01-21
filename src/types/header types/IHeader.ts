@@ -1,4 +1,4 @@
 export interface IHeaderProps {
-    onShowModal: (type: string) => void
+    onShowModal: (type: string) => void;
 }
 
