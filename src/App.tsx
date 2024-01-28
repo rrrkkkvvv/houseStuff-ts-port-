@@ -7,7 +7,7 @@ import { PopUpContext } from './contexts/popUp-context';
 import { ThemeContext } from './contexts/theme-context';
 import OrdersContextProvider from './contexts/orders-context';
 import Search from './components/search/Search';
-import Modal from './components/modal component/Modal';
+import Modal from './components/modal/Modal';
 import { IOrder } from './contexts/context types/IOrdersContext';
 import Pagination from './components/pagination/Pagination';
 //To deploy a gh pages use: npm run predeploy    npm run deploy
