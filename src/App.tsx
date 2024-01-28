@@ -18,9 +18,9 @@ export default function App() {
 
 
 
-  const popUpContext = useContext(PopUpContext)
+  const popUpContext = useContext(PopUpContext);
 
-  const themeData = useContext(ThemeContext)
+  const themeData = useContext(ThemeContext);
 
 
   if (!popUpContext || !themeData) {
@@ -28,8 +28,8 @@ export default function App() {
   }
 
 
-  let [items, setItems] = useState<IOrder[]>([])
-  let [currentItems, setCurrentItems] = useState<IOrder[]>([])
+  let [items, setItems] = useState<IOrder[]>([]);
+  let [currentItems, setCurrentItems] = useState<IOrder[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage] = useState<number>(3);
   useEffect(() => {
@@ -44,47 +44,45 @@ export default function App() {
         }
         const data = await promise.json();
 
-        setCurrentItems(data)
-        setItems(data)
+        setCurrentItems(data);
+        setItems(data);
       } catch (error) {
         console.error('Error here!:', error);
-        setCurrentItems([])
-        setItems([])
+        setCurrentItems([]);
+        setItems([]);
       }
 
     }
-    fetchProductsData()
-    let lastScroll = 0
+    fetchProductsData();
+    let lastScroll = 0;
 
-    const header = document.querySelector('.header')
-    const cart = document.querySelector('.shop-cart')
+    const header = document.querySelector('.header');
+    const cart = document.querySelector('.shop-cart');
 
-    const scrollPosition = () => window.pageYOffset || document.documentElement.scrollTop
+    const scrollPosition = () => window.pageYOffset || document.documentElement.scrollTop;
 
-    const containHide = () => header?.classList.contains('hideHeader') ? true : false
+    const containHide = () => header?.classList.contains('hideHeader') ? true : false;
 
     function handleScroll() {
       if (!cart?.classList.contains('visible')) {
         if (scrollPosition() > lastScroll && !containHide()) {
-          header?.classList.add('hideHeader')
+          header?.classList.add('hideHeader');
         } else if (scrollPosition() < lastScroll && containHide()) {
-          header?.classList.remove('hideHeader')
+          header?.classList.remove('hideHeader');
 
         }
-        lastScroll = scrollPosition()
+        lastScroll = scrollPosition();
       }
 
     }
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
 
   }, [])
-  useEffect(() => {
 
-  }, [currentPage])
   const lastItemIndex = currentPage * itemsPerPage;
   const firstItemIndex = lastItemIndex - itemsPerPage;
   const currentPageItems = currentItems.slice(firstItemIndex, lastItemIndex);
@@ -92,7 +90,7 @@ export default function App() {
 
 
   const paginate = (pageNumber: number, e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
-    e.preventDefault()
+    e.preventDefault();
     setCurrentPage(pageNumber);
 
   }
@@ -103,7 +101,7 @@ export default function App() {
       setCurrentPage((prev) => prev += 1);
 
     } else {
-      setCurrentPage(1)
+      setCurrentPage(1);
 
     }
 
@@ -120,19 +118,19 @@ export default function App() {
   }
 
 
-  let [showFullItem, setShowFullItem] = useState(false)
-  let [fullItem, setFullItem] = useState<IOrder>(Object)
+  let [showFullItem, setShowFullItem] = useState(false);
+  let [fullItem, setFullItem] = useState<IOrder>(Object);
 
-  let [showModalAbout, setShowModalAbout] = useState(false)
-  let [showModalContact, setShowModalContact] = useState(false)
+  let [showModalAbout, setShowModalAbout] = useState(false);
+  let [showModalContact, setShowModalContact] = useState(false);
 
   useEffect(() => {
     if (showModalContact === true || showModalAbout === true) {
-      document.body.classList.add('lock')
+      document.body.classList.add('lock');
     } else {
-      document.body.classList.remove('lock')
+      document.body.classList.remove('lock');
     }
-  }, [showModalAbout, showModalContact])
+  }, [showModalAbout, showModalContact]);
 
   return (
 
@@ -196,29 +194,29 @@ export default function App() {
   )
 
   function chooseCategory(category: string) {
-    setCurrentPage(1)
+    setCurrentPage(1);
     if (category === "all") {
-      return setCurrentItems(currentItems = items)
+      return setCurrentItems(currentItems = items);
     }
 
-    setCurrentItems(currentItems = items.filter(el => el.category === category))
+    setCurrentItems(currentItems = items.filter(el => el.category === category));
   }
   function checkAllLetters(name: string, charArray: string[]) {
 
-    const countMap: { [key: string]: number } = {}
+    const countMap: { [key: string]: number } = {};
 
     for (const letter of name) {
-      countMap[letter] = (countMap[letter] || 0) + 1
+      countMap[letter] = (countMap[letter] || 0) + 1;
     }
 
     return charArray.every((letter) => {
 
 
-      const countNameChars = countMap[letter] || 0
-      const countArrayChars = charArray.filter((el) => el === letter).length
+      const countNameChars = countMap[letter] || 0;
+      const countArrayChars = charArray.filter((el) => el === letter).length;
 
 
-      return countNameChars >= countArrayChars
+      return countNameChars >= countArrayChars;
 
     })
 
@@ -228,19 +226,19 @@ export default function App() {
   function searchFilter(value: string) {
     if (value != '') {
       setTimeout(() => {
-        let inputValue = value.trim().toLowerCase()
-        let splitValue = inputValue.split('')
+        let inputValue = value.trim().toLowerCase();
+        let splitValue = inputValue.split('');
 
 
 
-        let newCurrItems = items.filter(el => checkAllLetters(el.title.toLowerCase(), splitValue))
+        let newCurrItems = items.filter(el => checkAllLetters(el.title.toLowerCase(), splitValue));
 
-        setCurrentItems(currentItems = newCurrItems)
+        setCurrentItems(currentItems = newCurrItems);
 
       }, 300);
 
     } else {
-      setCurrentItems(currentItems = items)
+      setCurrentItems(currentItems = items);
 
     }
 
@@ -248,31 +246,22 @@ export default function App() {
   }
 
   function onShowItem(item: IOrder) {
-    setFullItem(fullItem = item)
-    setShowFullItem(showFullItem = !showFullItem)
-    document.body.classList.toggle('lock')
+    setFullItem(fullItem = item);
+    setShowFullItem(showFullItem = !showFullItem);
+    document.body.classList.toggle('lock');
 
   }
 
   function onShowModal(type: string) {
 
     if (type === "about") {
-      setShowModalAbout(showModalAbout = !showModalAbout)
+      setShowModalAbout(showModalAbout = !showModalAbout);
     } else if (type === "contacts") {
-      setShowModalContact(showModalContact = !showModalContact)
+      setShowModalContact(showModalContact = !showModalContact);
     } else if (type === "cabinet") {
     } else {
-      setShowModalAbout(showModalAbout = false)
-      setShowModalContact(showModalContact = false)
-
+      setShowModalAbout(showModalAbout = false);
+      setShowModalContact(showModalContact = false);
     }
-
-
   }
-
-
-
-
-
 }
-
