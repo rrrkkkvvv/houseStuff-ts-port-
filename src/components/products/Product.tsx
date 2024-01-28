@@ -3,11 +3,11 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { OrdersContext } from '../../contexts/orders-context';
 import { ThemeContext } from '../../contexts/theme-context';
-import { IProductProps } from '../../types/product types/IProduct';
+import { IProductProps } from './IProduct';
 export default function Product({ onShowItem, item }: IProductProps) {
 
-    const ordersData = useContext(OrdersContext)
-    const themeData = useContext(ThemeContext)
+    const ordersData = useContext(OrdersContext);
+    const themeData = useContext(ThemeContext);
     if (!ordersData || !themeData) {
         return <div>failed...</div>;
     }

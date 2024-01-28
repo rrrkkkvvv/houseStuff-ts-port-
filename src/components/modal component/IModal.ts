@@ -1,4 +1,4 @@
-import { IOrder } from "./context types/IOrdersContext";
+import { IOrder } from "../../contexts/context types/IOrdersContext";
 import { ReactNode } from 'react';
 
 export type IModalProps = {

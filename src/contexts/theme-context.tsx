@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
-import { ContextProps } from "../types/context types/IContext";
-import { IColorThemes, IColorTheme, IThemesContextValue } from "../types/context types/IThemesContext";
+import { ContextProps } from "./context types/IContext";
+import { IColorThemes, IColorTheme, IThemesContextValue } from "./context types/IThemesContext";
 
 const themes: IColorThemes = {
     light: {
@@ -17,8 +17,8 @@ const themes: IColorThemes = {
 export default function ThemesContextProvider({ children }: ContextProps) {
 
 
-    let [currentTheme, setCurrentTheme] = useState<IColorTheme>(themes.light)
-    let [reversedCurrentTheme, setReversedCurrentTheme] = useState<IColorTheme>(themes.dark)
+    let [currentTheme, setCurrentTheme] = useState<IColorTheme>(themes.light);
+    let [reversedCurrentTheme, setReversedCurrentTheme] = useState<IColorTheme>(themes.dark);
 
 
 
@@ -26,17 +26,17 @@ export default function ThemesContextProvider({ children }: ContextProps) {
 
     function toggleTheme(): void {
 
-        setReversedCurrentTheme(currentTheme === themes.light ? themes.light : themes.dark)
+        setReversedCurrentTheme(currentTheme === themes.light ? themes.light : themes.dark);
 
-        setCurrentTheme((prevState) => prevState === themes.light ? themes.dark : themes.light)
+        setCurrentTheme((prevState) => prevState === themes.light ? themes.dark : themes.light);
 
 
     }
 
     if (currentTheme === themes.light) {
-        document.body.style.backgroundColor = "#fff"
+        document.body.style.backgroundColor = "#fff";
     } else {
-        document.body.style.backgroundColor = "#333"
+        document.body.style.backgroundColor = "#333";
 
     }
 
@@ -57,4 +57,4 @@ export default function ThemesContextProvider({ children }: ContextProps) {
 
 
 
-export const ThemeContext = createContext<IThemesContextValue | undefined>(undefined)
+export const ThemeContext = createContext<IThemesContextValue | undefined>(undefined);

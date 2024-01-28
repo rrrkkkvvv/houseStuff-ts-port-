@@ -1,10 +1,10 @@
 import { useContext } from 'react'
 import { AiOutlineClose } from "react-icons/ai"
-import { OrdersContext } from '../contexts/orders-context';
-import { IModalProps } from '../types/IModal';
+import { OrdersContext } from '../../contexts/orders-context';
+import { IModalProps } from './IModal';
 
 const Modal: React.FC<IModalProps> = (props) => {
-    const ordersData = useContext(OrdersContext)
+    const ordersData = useContext(OrdersContext);
 
     if (!ordersData) {
         return <div>failed...</div>;
@@ -38,4 +38,4 @@ const Modal: React.FC<IModalProps> = (props) => {
 
 }
 
-export default Modal
+export default Modal;

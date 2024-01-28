@@ -1,9 +1,7 @@
 import Product from './Product'
-import { IProductsProps } from '../../types/product types/IProducts'
+import { IProductsProps } from './IProducts'
 
 export default function Products({ onShowItem, items }: IProductsProps) {
-
-
     return (
         <main >
             {items.map((el) => (

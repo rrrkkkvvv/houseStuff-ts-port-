@@ -7,13 +7,13 @@ import { AiOutlineClose } from "react-icons/ai"
 import { PopUpContext } from '../../contexts/popUp-context';
 import { ThemeContext } from '../../contexts/theme-context';
 import { OrdersContext } from '../../contexts/orders-context';
-import { IHeaderProps } from '../../types/header types/IHeader';
+import { IHeaderProps } from './IHeader';
 
 
 export default function Header({ onShowModal }: IHeaderProps) {
-    const popUpContext = useContext(PopUpContext)
-    const ordersData = useContext(OrdersContext)
-    const themeData = useContext(ThemeContext)
+    const popUpContext = useContext(PopUpContext);
+    const ordersData = useContext(OrdersContext);
+    const themeData = useContext(ThemeContext);
 
     if (!popUpContext || !ordersData || !themeData) {
         return <div>failed...</div>;
@@ -24,15 +24,15 @@ export default function Header({ onShowModal }: IHeaderProps) {
     const { currentTheme, } = themeData;
 
 
-    let [showMenu, setShowMenu] = useState(false)
+    let [showMenu, setShowMenu] = useState(false);
     let [cartOpen, setCartOpen] = useState(false);
 
     useEffect(() => {
         if (showMenu === true) {
 
-            document.body.classList.add('lock')
+            document.body.classList.add('lock');
         } else {
-            document.body.classList.remove('lock')
+            document.body.classList.remove('lock');
 
         }
     }, [showMenu])
@@ -96,5 +96,4 @@ export default function Header({ onShowModal }: IHeaderProps) {
             </div>
         </header>
     )
-
 }

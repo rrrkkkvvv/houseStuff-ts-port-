@@ -1,18 +1,18 @@
 import { useState, createContext, useContext } from 'react'
 import { PopUpContext } from './popUp-context';
-import { ContextProps } from '../types/context types/IContext';
-import { IOrder, IOrdersContextValue } from '../types/context types/IOrdersContext';
+import { ContextProps } from './context types/IContext';
+import { IOrder, IOrdersContextValue } from './context types/IOrdersContext';
 export default function OrdersContextProvider({ children }: ContextProps) {
 
 
-    const popUpContext = useContext(PopUpContext)
+    const popUpContext = useContext(PopUpContext);
 
 
     let [orders, setOrders] = useState<IOrder[]>([]);
 
     function addToOrder(item: IOrder): void {
         if (popUpContext) {
-            let itIsInCart = false
+            let itIsInCart = false;
             orders.forEach(el => {
                 if (el.id === item.id) {
                     itIsInCart = true;
@@ -20,18 +20,18 @@ export default function OrdersContextProvider({ children }: ContextProps) {
             });
 
             if (!itIsInCart) {
-                setOrders(orders = [...orders, item])
+                setOrders(orders = [...orders, item]);
 
-                popUpContext.showPopUpFn({ type: "", text: "Product was added in cart" })
+                popUpContext.showPopUpFn({ type: "", text: "Product was added in cart" });
             } else {
-                popUpContext.showPopUpFn({ type: "red", text: "Product in cart!!" })
+                popUpContext.showPopUpFn({ type: "red", text: "Product in cart!!" });
             }
         }
 
 
     }
     function deleteOrder(itemId: number): void {
-        setOrders(orders = orders.filter(el => el.id !== itemId))
+        setOrders(orders = orders.filter(el => el.id !== itemId));
     }
 
     const value: IOrdersContextValue = {
@@ -49,4 +49,4 @@ export default function OrdersContextProvider({ children }: ContextProps) {
     )
 
 }
-export const OrdersContext = createContext<IOrdersContextValue | undefined>(undefined)
+export const OrdersContext = createContext<IOrdersContextValue | undefined>(undefined);

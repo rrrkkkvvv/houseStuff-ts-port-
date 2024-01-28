@@ -1,10 +1,10 @@
 import { useContext } from 'react'
 import { FaTrash } from 'react-icons/fa'
 import { OrdersContext } from '../../contexts/orders-context';
-import { IOrderProps } from '../../types/header types/IOrder';
+import { IOrderProps } from './IOrder';
 
 export default function Order({ item }: IOrderProps) {
-    const ordersData = useContext(OrdersContext)
+    const ordersData = useContext(OrdersContext);
 
     return (
 

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import { IPaginationProps } from '../types/IPagination';
+import { IPaginationProps } from './IPagination';
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
-import { ThemeContext } from '../contexts/theme-context';
+import { ThemeContext } from '../../contexts/theme-context';
 
 export default function Pagination({ itemsPerPage, totalItems, paginateFn, currentPage, prevPage, nextPage }: IPaginationProps) {
 
@@ -15,7 +15,7 @@ export default function Pagination({ itemsPerPage, totalItems, paginateFn, curre
     const pageNumbers = [];
 
     for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
-        pageNumbers.push(i)
+        pageNumbers.push(i);
     }
     if (pageNumbers.length > 1) {
         return (

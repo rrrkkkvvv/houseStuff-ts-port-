@@ -1,6 +1,6 @@
 import { useState, createContext } from 'react'
-import { ContextProps } from '../types/context types/IContext';
-import { IPopUpContextValue, ShowPopUpFnType } from '../types/context types/IPopUpContext';
+import { ContextProps } from './context types/IContext';
+import { IPopUpContextValue, ShowPopUpFnType } from './context types/IPopUpContext';
 
 export default function PopUpContextProvider({ children }: ContextProps) {
 
@@ -12,17 +12,17 @@ export default function PopUpContextProvider({ children }: ContextProps) {
 
 
         if (type === "red") {
-            setPopUpText(popUpText = text)
-            setPopUpBgRed(true)
+            setPopUpText(popUpText = text);
+            setPopUpBgRed(true);
         } else {
-            setPopUpText(popUpText = text)
-            setPopUpBgRed(false)
+            setPopUpText(popUpText = text);
+            setPopUpBgRed(false);
         }
         setShowPopUp(true);
         setTimeout(() => {
             setShowPopUp(false);
-            setPopUpBgRed(false)
-            setPopUpText(popUpText = "")
+            setPopUpBgRed(false);
+            setPopUpText(popUpText = "");
 
         }, 2000);
     }
@@ -43,4 +43,4 @@ export default function PopUpContextProvider({ children }: ContextProps) {
     )
 }
 
-export const PopUpContext = createContext<IPopUpContextValue | undefined>(undefined)
+export const PopUpContext = createContext<IPopUpContextValue | undefined>(undefined);

@@ -1,24 +1,22 @@
 import { useState, ChangeEvent } from "react"
-import { ISearchProps } from "../types/ISearch";
+import { ISearchProps } from "./ISearch";
 
 export default function Search({ searchFilter }: ISearchProps) {
 
-    let [inputState, setInputState] = useState<string>('')
+    let [inputState, setInputState] = useState<string>('');
 
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
 
         setInputState(event.target.value);
-        searchFilter(event.target.value)
+        searchFilter(event.target.value);
 
 
 
     };
     const handleButtonSearch = () => {
 
-        searchFilter(inputState)
-
-
+        searchFilter(inputState);
 
     };
 

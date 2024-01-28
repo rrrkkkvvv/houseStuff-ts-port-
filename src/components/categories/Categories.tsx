@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react'
 
-import { ThemeContext } from '../contexts/theme-context'
-import { ICategoriesProps } from '../types/ICategories';
+import { ThemeContext } from '../../contexts/theme-context'
+import { ICategoriesProps } from './ICategories';
 
 export default function Categories({ chooseCategory }: ICategoriesProps) {
 
-    let themeData = useContext(ThemeContext)
+    let themeData = useContext(ThemeContext);
     if (!themeData) {
         return <div>failed...</div>;
     }
@@ -42,31 +42,22 @@ export default function Categories({ chooseCategory }: ICategoriesProps) {
         if (window.screen.width <= 645) {
 
             if (document.querySelector('.categories')?.classList.contains('visible')) {
-                document.querySelector('.categories')?.classList.remove('height-transition')
+                document.querySelector('.categories')?.classList.remove('height-transition');
 
                 setTimeout(() => {
-                    document.querySelector('.categories')?.classList.remove('visible')
-
+                    document.querySelector('.categories')?.classList.remove('visible');
                 }, 500)
             } else {
-                document.querySelector('.categories')?.classList.add('visible')
-
+                document.querySelector('.categories')?.classList.add('visible');
                 setTimeout(() => {
-                    document.querySelector('.categories')?.classList.add('height-transition')
-
-                }, 500)
+                    document.querySelector('.categories')?.classList.add('height-transition');
+                }, 500);
             }
         } else {
-            document.querySelector('.categories')?.classList.remove('height-transition')
-
-            document.querySelector('.categories')?.classList.toggle('visible')
+            document.querySelector('.categories')?.classList.remove('height-transition');
+            document.querySelector('.categories')?.classList.toggle('visible');
 
         }
-
-
-
-
-
     }
 }
 

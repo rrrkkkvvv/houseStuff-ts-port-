@@ -2,14 +2,14 @@ import Header from './components/header/Header'
 import Footer from './components/Footer'
 import { useState, useEffect, useContext } from 'react';
 import Products from './components/products/Products';
-import Categories from './components/Categories';
-import Modal from './components/Modal';
+import Categories from './components/categories/Categories';
 import { PopUpContext } from './contexts/popUp-context';
 import { ThemeContext } from './contexts/theme-context';
 import OrdersContextProvider from './contexts/orders-context';
-import Search from './components/Search';
-import { IOrder } from './types/context types/IOrdersContext';
-import Pagination from './components/Pagination';
+import Search from './components/search/Search';
+import Modal from './components/modal component/Modal';
+import { IOrder } from './contexts/context types/IOrdersContext';
+import Pagination from './components/pagination/Pagination';
 //To deploy a gh pages use: npm run predeploy    npm run deploy
 
 const urlWithProducts = "https://raw.githubusercontent.com/rrrkkkvvv/products.github.io/main/productsForHstuff.json"
@@ -33,8 +33,6 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage] = useState<number>(3);
   useEffect(() => {
-
-
     async function fetchProductsData() {
       try {
         const promise = await fetch(urlWithProducts);
@@ -83,10 +81,10 @@ export default function App() {
 
   }, [])
 
+  //------------PAGINATION ---start
   const lastItemIndex = currentPage * itemsPerPage;
   const firstItemIndex = lastItemIndex - itemsPerPage;
   const currentPageItems = currentItems.slice(firstItemIndex, lastItemIndex);
-
 
 
   const paginate = (pageNumber: number, e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
@@ -117,6 +115,7 @@ export default function App() {
     }
   }
 
+  //------------PAGINATION ---END
 
   let [showFullItem, setShowFullItem] = useState(false);
   let [fullItem, setFullItem] = useState<IOrder>(Object);
@@ -138,14 +137,11 @@ export default function App() {
     <div className='wrapper' style={{ background: themeData.currentTheme.background, color: themeData.currentTheme.color }}>
 
       <OrdersContextProvider>
-
         <Header onShowModal={onShowModal} />
         <div className='presentation'></div>
-
         <Search searchFilter={searchFilter} />
         <Categories chooseCategory={chooseCategory} />
         <Products onShowItem={onShowItem} items={currentPageItems} />
-
         <div className={`notification ${popUpContext.showPopUp ? 'visible' : ''} ${popUpContext.popUpBgRed ? 'red' : 'green'}`}>
           <p>{popUpContext.popUpText}</p>
         </div>
@@ -165,7 +161,6 @@ export default function App() {
         />
         <Modal
           type={"information"}
-
           show={showModalAbout}
           onShowModal={onShowModal}
           title={"About us"}
@@ -228,8 +223,6 @@ export default function App() {
       setTimeout(() => {
         let inputValue = value.trim().toLowerCase();
         let splitValue = inputValue.split('');
-
-
 
         let newCurrItems = items.filter(el => checkAllLetters(el.title.toLowerCase(), splitValue));
 
