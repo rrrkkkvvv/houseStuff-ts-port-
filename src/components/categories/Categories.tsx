@@ -37,27 +37,27 @@ export default function Categories({ chooseCategory }: ICategoriesProps) {
         </div>
     )
     function showCategories() {
+        document.querySelector('.categories')?.classList.toggle('visible');
 
+        // if (window.screen.width <= 645) {
 
-        if (window.screen.width <= 645) {
+        //     if (document.querySelector('.categories')?.classList.contains('visible')) {
+        //         document.querySelector('.categories')?.classList.remove('height-transition');
 
-            if (document.querySelector('.categories')?.classList.contains('visible')) {
-                document.querySelector('.categories')?.classList.remove('height-transition');
+        //         setTimeout(() => {
+        //             document.querySelector('.categories')?.classList.remove('visible');
+        //         }, 500)
+        //     } else {
+        //         document.querySelector('.categories')?.classList.add('visible');
+        //         setTimeout(() => {
+        //             document.querySelector('.categories')?.classList.add('height-transition');
+        //         }, 500);
+        //     }
+        // } else {
+        //     document.querySelector('.categories')?.classList.remove('height-transition');
+        //     document.querySelector('.categories')?.classList.toggle('visible');
 
-                setTimeout(() => {
-                    document.querySelector('.categories')?.classList.remove('visible');
-                }, 500)
-            } else {
-                document.querySelector('.categories')?.classList.add('visible');
-                setTimeout(() => {
-                    document.querySelector('.categories')?.classList.add('height-transition');
-                }, 500);
-            }
-        } else {
-            document.querySelector('.categories')?.classList.remove('height-transition');
-            document.querySelector('.categories')?.classList.toggle('visible');
-
-        }
+        // }
     }
 }
 
