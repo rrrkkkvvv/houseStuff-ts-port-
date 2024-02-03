@@ -508,7 +508,10 @@ header .shop-cart .make-order-button {
 
     margin-right: 40px;
 
-    &:hover {
+}
+
+@media(hover:hover) {
+    .categories .category-choose {
         transform: scale(1.2);
 
     }
@@ -519,6 +522,7 @@ header .shop-cart .make-order-button {
         max-width: 85%;
     }
 }
+
 
 @media (max-width: 710px) {
     .categories {
@@ -545,6 +549,23 @@ header .shop-cart .make-order-button {
     }
 }
 
+
+@media (max-width: 477px) {
+
+    .category-choose {
+        width: 100%;
+    }
+
+    .categories {
+        padding-left: 20px;
+    }
+
+    .categories.visible {
+        height: 200px;
+
+
+    }
+}
 
 main {
     display: flex;
