@@ -19,7 +19,7 @@ export default function Header({ onShowModal }: IHeaderProps) {
         return <div>failed...</div>;
     }
 
-    const { orders, addToOrder } = ordersData;
+    const { orders } = ordersData;
     const { showPopUpFn, } = popUpContext;
     const { currentTheme, } = themeData;
 
