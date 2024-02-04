@@ -19,13 +19,14 @@ export default function Header({ onShowModal }: IHeaderProps) {
         return <div>failed...</div>;
     }
 
-    const { orders } = ordersData;
+    const { orders, addToOrder } = ordersData;
     const { showPopUpFn, } = popUpContext;
     const { currentTheme, } = themeData;
 
 
     let [showMenu, setShowMenu] = useState(false);
     let [cartOpen, setCartOpen] = useState(false);
+
 
     useEffect(() => {
         if (showMenu === true) {

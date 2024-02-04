@@ -1,8 +1,21 @@
-import { useState, createContext, useContext } from 'react'
+import { useState, createContext, useContext, useEffect } from 'react'
 import { PopUpContext } from './popUp-context';
 import { ContextProps } from './context types/IContext';
 import { IOrder, IOrdersContextValue } from './context types/IOrdersContext';
 export default function OrdersContextProvider({ children }: ContextProps) {
+    useEffect(() => {
+        const storedOrders = localStorage.getItem('orders')
+
+        if (storedOrders) {
+            try {
+                const parsedOrders = JSON.parse(storedOrders);
+                setOrders(parsedOrders)
+
+            } catch (error) {
+                console.error('Error parsing todos:', error);
+            }
+        }
+    }, [])
 
 
     const popUpContext = useContext(PopUpContext);
@@ -21,6 +34,7 @@ export default function OrdersContextProvider({ children }: ContextProps) {
 
             if (!itIsInCart) {
                 setOrders(orders = [...orders, item]);
+                localStorage.setItem('orders', JSON.stringify(orders));
 
                 popUpContext.showPopUpFn({ type: "", text: "Product was added in cart" });
             } else {
@@ -32,6 +46,8 @@ export default function OrdersContextProvider({ children }: ContextProps) {
     }
     function deleteOrder(itemId: number): void {
         setOrders(orders = orders.filter(el => el.id !== itemId));
+        localStorage.setItem('orders', JSON.stringify(orders));
+
     }
 
     const value: IOrdersContextValue = {

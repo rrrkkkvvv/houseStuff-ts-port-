@@ -54,6 +54,9 @@ export default function App() {
     fetchProductsData();
     let lastScroll = 0;
 
+
+
+
     const header = document.querySelector('.header');
     const cart = document.querySelector('.shop-cart');
 
