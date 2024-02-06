@@ -231,7 +231,7 @@ export default function App() {
 
         setCurrentItems(currentItems = newCurrItems);
 
-      }, 300);
+      }, 500);
 
     } else {
       setCurrentItems(currentItems = items);
