@@ -38,6 +38,9 @@ export default function Header({ onShowModal }: IHeaderProps) {
         }
     }, [showMenu])
 
+
+
+
     function showOrders() {
 
         let summ = 0;

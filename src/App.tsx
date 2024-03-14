@@ -12,7 +12,7 @@ import { IOrder } from './contexts/context types/IOrdersContext';
 import Pagination from './components/pagination/Pagination';
 //To deploy a gh pages use: npm run predeploy    npm run deploy
 
-const urlWithProducts = "https://raw.githubusercontent.com/rrrkkkvvv/products.github.io/main/productsForHstuff.json"
+// const urlWithProducts = "https://raw.githubusercontent.com/rrrkkkvvv/products.github.io/main/productsForHstuff.json"
 
 export default function App() {
 
@@ -33,25 +33,38 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage] = useState<number>(3);
   useEffect(() => {
-    async function fetchProductsData() {
-      try {
-        const promise = await fetch(urlWithProducts);
-
-        if (!promise.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await promise.json();
-
+    //TODO:MUSTHAVE TO START OS SERVER TO FETCH DATA
+    fetch('http://housestuffdata/')
+      .then((response) => response.json())
+      .then((data) => {
         setCurrentItems(data);
         setItems(data);
-      } catch (error) {
+      })
+      .catch((error) => {
         console.error('Error here!:', error);
         setCurrentItems([]);
         setItems([]);
-      }
+      })
 
-    }
-    fetchProductsData();
+    // async function fetchProductsDat: Promise<void>a() {
+    //   try {
+    //     const promise = await fetch(urlWithProducts);
+
+    //     if (!promise.ok) {
+    //       throw new Error('Network response was not ok');
+    //     }
+    //     const data = await promise.json();
+
+    //     setCurrentItems(data);
+    //     setItems(data);
+    //   } catch (error) {
+    //     console.error('Error here!:', error);
+    //     setCurrentItems([]);
+    //     setItems([]);
+    //   }
+
+    // }
+    // fetchProductsData();
     let lastScroll = 0;
 
 
