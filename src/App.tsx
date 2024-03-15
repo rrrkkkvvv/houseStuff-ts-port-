@@ -1,6 +1,7 @@
 import Header from './components/header/Header'
 import Footer from './components/Footer'
 import { useState, useEffect, useContext } from 'react';
+import debounce from './hooks/debounse';
 import Products from './components/products/Products';
 import Categories from './components/categories/Categories';
 import { PopUpContext } from './contexts/popUp-context';
@@ -27,6 +28,8 @@ export default function App() {
     return <div>failed...</div>;
   }
 
+
+  
 
   let [items, setItems] = useState<IOrder[]>([]);
   let [currentItems, setCurrentItems] = useState<IOrder[]>([]);
@@ -130,6 +133,29 @@ export default function App() {
 
     }
   }
+  const searchFn =  debounce({
+    fn:(inputVal: string) => searchFilter(inputVal),
+     waitTime:500,
+    });
+
+  function searchFilter(value: string) {
+    if (value != '') {
+        let inputValue = value.trim().toLowerCase();
+        let splitValue = inputValue.split('');
+
+        let newCurrItems = items.filter(el => checkAllLetters(el.title.toLowerCase(), splitValue));
+
+        setCurrentItems(currentItems = newCurrItems);
+
+
+    } else {
+      setCurrentItems(currentItems = items);
+
+    }
+
+
+  }
+ 
 
   //------------PAGINATION ---END
 
@@ -155,7 +181,7 @@ export default function App() {
       <OrdersContextProvider>
         <Header onShowModal={onShowModal} />
         <div className='presentation'></div>
-        <Search searchFilter={searchFilter} />
+        <Search searchFilter={searchFn} />
         <Categories chooseCategory={chooseCategory} />
         <Products onShowItem={onShowItem} items={currentPageItems} />
         <div className={`notification ${popUpContext.showPopUp ? 'visible' : ''} ${popUpContext.popUpBgRed ? 'red' : 'green'}`}>
@@ -233,26 +259,6 @@ export default function App() {
 
   }
 
-
-  function searchFilter(value: string) {
-    if (value != '') {
-      setTimeout(() => {
-        let inputValue = value.trim().toLowerCase();
-        let splitValue = inputValue.split('');
-
-        let newCurrItems = items.filter(el => checkAllLetters(el.title.toLowerCase(), splitValue));
-
-        setCurrentItems(currentItems = newCurrItems);
-
-      }, 500);
-
-    } else {
-      setCurrentItems(currentItems = items);
-
-    }
-
-
-  }
 
   function onShowItem(item: IOrder) {
     setFullItem(fullItem = item);
